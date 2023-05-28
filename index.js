@@ -60,7 +60,7 @@ function handleTweetBtnClick(){
     // console.log(tweetInput.value)
     if(tweetInput.value){
         tweetsData.unshift({
-            name: `Kabaka Jewlius`,
+            myname: `Kabaka Jewlius`,
             handle: `@kabakajewlius`,
             profilePic: `images/portrait.jpg`,
             likes: 0,
