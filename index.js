@@ -1,14 +1,8 @@
 import { tweetsData } from "./data.js";
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
+// console.log(uuidv4());
+// const tweetBtn = document.getElementById('tweet-btn')
 
-const tweetBtn = document.getElementById('tweet-btn')
-const tweetInput = document.getElementById('tweet-input')
-let isLikeIcon = false
-let isRetweeted = false
-
-tweetBtn.addEventListener('click', () => {
-    console.log(tweetInput.value)
-    tweetInput.value = ''
-})
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.like){
@@ -18,15 +12,21 @@ document.addEventListener('click', function(e){
     } else  if(e.target.dataset.retweet) {
         handleRetweetCount(e.target.dataset.retweet)
     }
+    else if(e.target.dataset.reply){
+        handleReplyClick(e.target.dataset.reply)
+    }
+    else if(e.target.id === 'tweet-btn') {
+        handleTweetBtnClick()
+    }
 })
 
 
 function handleLikeCount (tweetId) {
-    //targetTweetObj.likes++
+    
     const targetTweetObj = tweetsData.filter(tweet => {
         return tweet.uuid === tweetId
     })[0]    
-    //like count logic
+    
     if(targetTweetObj.isLiked) {
         targetTweetObj.likes--
     } else {
@@ -37,7 +37,7 @@ function handleLikeCount (tweetId) {
 }
 
 function handleRetweetCount(tweetId) {
-    //console.log(tweetId)
+    
     const targetTweetObj = tweetsData.filter(tweet => {
         return tweet.uuid === tweetId
     })[0]
@@ -49,6 +49,31 @@ function handleRetweetCount(tweetId) {
     }
     targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted
     render()
+}
+
+function handleReplyClick(replyId){
+    document.getElementById(`replies-${replyId}`).classList.toggle('hidden') 
+}
+
+function handleTweetBtnClick(){
+    const tweetInput = document.getElementById('tweet-input')
+    // console.log(tweetInput.value)
+    if(tweetInput.value){
+        tweetsData.unshift({
+            name: `Kabaka Jewlius`,
+            handle: `@kabakajewlius`,
+            profilePic: `images/portrait.jpg`,
+            likes: 0,
+            retweets: 0,
+            tweetText: tweetInput.value,
+            replies: [],
+            isLiked: false,
+            isRetweeted: false,
+            uuid: uuidv4(),
+        })
+        render()
+        tweetInput.value = ''
+    }
 }
 
 function getFeedHtml(){
@@ -66,13 +91,14 @@ function getFeedHtml(){
             tweet.replies.forEach(function(reply) {
                 repliesHtml += `
                 <div class="tweet-reply">
-                <div class="tweet-inner">
-                    <img src="${reply.profilePic}" class="profile-pic">
-                        <div>
-                            <p class="handle">${reply.handle}</p>
-                            <p class="tweet-text">${reply.tweetText}</p>
-                        </div>
+                    <div class="tweet-inner">
+                            <img src="${reply.profilePic}" class="profile-pic">
+                                    <div class='initials'>
+                                        <p class="name">${reply.myname}</p>
+                                        <p class="handle">${reply.handle}</p>
+                                    </div>
                     </div>
+                    <p class="tweet-text">${reply.tweetText}</p>
                 </div>
             `})
         }
@@ -92,6 +118,7 @@ function getFeedHtml(){
                 <div class="tweet-inner">
                     <img src="${tweet.profilePic}" class="profile-pic">
                     <div>
+                        <p class="name">${tweet.myname}</p>
                         <p class="handle">${tweet.handle}</p>
                         <p class="tweet-text">${tweet.tweetText}</p>
                         <div class="tweet-details">

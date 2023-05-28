@@ -1,6 +1,7 @@
 export const tweetsData = [   
     {
-        handle: `@TrollBot66756542 💎`,
+        myname: `TrollBot66756542 💎`,
+        handle: `@TrollBot66756542`,
         profilePic: `images/alien.jpg`,
         likes: 27,
         retweets: 10,
@@ -12,19 +13,22 @@ export const tweetsData = [
         uuid: '4b161eee-c0f5-4545-9c4b-8562944223ee',
     },    
     {
-        handle: `@Elon ✅`,
+        myname: `Elon Musk ✅`,
+        handle: `@Elon`,
         profilePic: `images/elon-musk.jpg`,
         likes: 6500,
         retweets: 234,
         tweetText: `I need volunteers for a one-way mission to Mars 🪐. No experience necessary🚀`,
         replies: [
                   {
-                handle: `@TomCruise ✅`,
+                myname: `Tom Cruise ✅`,
+                handle: `@TomCruise`,
                 profilePic: `images/tom.jpg`,
                 tweetText: `Yes! Sign me up! 😎🛩`,
             },
                   {
-                handle: `@ChuckNorris ✅`,
+                myname: `Chuck Norris ✅`,
+                handle: `@ChuckNorris`,
                 profilePic: `images/chuck.jpg`,
                 tweetText: `I went last year😴`,
             },
@@ -33,7 +37,9 @@ export const tweetsData = [
         isRetweeted: false,
         uuid: '3c23454ee-c0f5-9g9g-9c4b-77835tgs2',
     },
-        {
+
+    {
+        myname: `Noob Coder`,    
         handle: `@NoobCoder12`,
         profilePic: `images/software.jpg`,
         likes: 10,
@@ -41,11 +47,13 @@ export const tweetsData = [
         tweetText: `Are you a coder if you only know HTML?`,
         replies: [
             {
-                handle: `@StackOverflower ☣️`,
+                myname: `Stack Overflower ☣️`,
+                handle: `@StackOverflower`,
                 profilePic: `images/programmer.jpg`,
                 tweetText: `No. Obviosuly not. Go get a job in McDonald's.`,
             },
             {
+                myname: `Yummy Coder`,
                 handle: `@YummyCoder64`,
                 profilePic: `images/coder.png`,
                 tweetText: `You are wonderful just as you are! ❤️`,

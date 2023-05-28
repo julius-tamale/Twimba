@@ -101,13 +101,31 @@ button{
     width: 80%;
 }
 
-.handle{
+.profile {
+    display: flex;
+}
+
+ .handle{
     font-size: 12px;
     font-weight: 500;
     color: #555;
     margin-top: 0;
 }
 
+.name {
+    margin-top: 0;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    display: block;
+}
+.initials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
 .tweet-text{
     width: 207px;
     font-size: 14px;
@@ -127,11 +145,4 @@ button{
 /* utility */
 .hidden{
     display: none;
-}
-
-.liked {
-    color: #f00;
-}
-.retweeted {
-    color: limegreen;
 }
